@@ -27,10 +27,10 @@ transporter.verify((err, success) => {
 
 app.post("/send", function (req, res) {
  let mailOptions = {
-   from: `${req.body.mailerState.email}`,
+   from: `${req.body.vals.email}`,
    to: process.env.EMAIL,
-   subject: `Message from: ${req.body.mailerState.email}`,
-   text: `${req.body.mailerState.message}`,
+   subject: `Message from: ${req.body.vals.email}`,
+   text: `${req.body.vals.message}`,
  };
 
  transporter.sendMail(mailOptions, function (err, data) {
