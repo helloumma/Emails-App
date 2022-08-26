@@ -22,7 +22,7 @@ let transporter = nodemailer.createTransport({
 transporter.verify((err, success) => {
  err
    ? console.log(err)
-   : console.log(`=== Server is ready to take messages: ${success} ===`);
+   : console.log(`server ready ${success}`);
 });
 
 app.post("/send", function (req, res) {
@@ -39,7 +39,7 @@ app.post("/send", function (req, res) {
        status: "fail",
      });
    } else {
-     console.log("== Message Sent ==");
+     console.log("email sent");
      res.json({
        status: "success",
      });
