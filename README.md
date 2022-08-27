@@ -18,6 +18,11 @@ This is a back-end application which sends speaks to a React front-end to send e
 - `npm install`
 - `npm start`
 
+## Setting up .env credentials
+
+- You will need your email address and password
+- You will need to generate client ID, secret token and refresh token via Google Cloud console
+
 ## 💭 Future Improvements
 
 - Send emails at a specific date and time (prompted by user on front-end)

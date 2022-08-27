@@ -22,15 +22,15 @@ let transporter = nodemailer.createTransport({
 transporter.verify((err, success) => {
  err
    ? console.log(err)
-   : console.log(`server ready ${success}`);
+   : console.log(`=== Server is ready to take messages: ${success} ===`);
 });
 
 app.post("/send", function (req, res) {
  let mailOptions = {
    from: `${req.body.vals.email}`,
    to: process.env.EMAIL,
-   subject: 'New Reminder',
-   html: `${req.body.vals.reminder}`,
+   subject: `Message from: ${req.body.vals.email}`,
+   text: `${req.body.vals.message}`,
  };
 
  transporter.sendMail(mailOptions, function (err, data) {
@@ -39,7 +39,7 @@ app.post("/send", function (req, res) {
        status: "fail",
      });
    } else {
-     console.log("email sent");
+     console.log("== Message Sent ==");
      res.json({
        status: "success",
      });
