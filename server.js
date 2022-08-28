@@ -66,26 +66,25 @@ app.post("/send", function (req, res) {
 
  const dateParsed = new Date(`${req.body.vals.date}T${req.body.vals.time}Z`)
 
- const job = schedule.scheduleJob(dateParsed, function(){
-  mailOptions
+schedule.scheduleJob(dateParsed, function(){
+  transporter.sendMail(mailOptions, function (err, data) {
+    if (err) {
+      res.json({
+        status: "fail",
+      });
+    } else {
+      console.log("email sent");
+      res.json({
+        status: "success",
+      });
+      
+    }
+  });
  })
 
- console.log(job)
 
  
- transporter.sendMail(mailOptions, function (err, data) {
-  if (err) {
-    res.json({
-      status: "fail",
-    });
-  } else {
-    console.log("email sent");
-    res.json({
-      status: "success",
-    });
-    
-  }
-});
+return job 
 });
 /*const dateParsed = new Date(`${req.body.vals.date}T${req.body.vals.time}Z`)
 
