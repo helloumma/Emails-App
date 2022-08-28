@@ -61,6 +61,7 @@ const job = schedule.scheduleJob(date, function(){
   console.log('The world is going to end today.');
 });
 */
+
 /*schedule.scheduleJob(req.body.vals.date, function(){
   transporter.sendMail(mailOptions, function (err, data) {
     if (err) {
