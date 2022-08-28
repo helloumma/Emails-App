@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors");
 const schedule = require('node-schedule');
 
-
 require("dotenv").config();
 
 // middleware
@@ -28,34 +27,6 @@ transporter.verify((err, success) => {
    : console.log(`server ready ${success}`);
 });
 
-/*
-app.post("/send", function (req, res) {
-  const dateParsed = new Date(`${req.body.vals.date}T${req.body.vals.time}Z`)
-  schedule.scheduleJob(dateParsed, function(){
- let mailOptions = {
-   from: `${req.body.vals.email}`,
-   to: process.env.EMAIL,
-   subject: 'New Reminder',
-   html: `${req.body.vals.date} ${req.body.vals.time} ${req.body.vals.reminder}`,
- };
-
- transporter.sendMail(mailOptions, function (err, data) {
-  if (err) {
-    res.json({
-      status: "fail",
-    });
-  } else {
-    console.log("email sent");
-    res.json({
-      status: "success",
-    });
-    
-  }
-});
-})
-
- 
- */
 app.post("/send", function (req, res) {
  let mailOptions = {
    from: `${req.body.vals.email}`,
@@ -77,45 +48,13 @@ schedule.scheduleJob(dateParsed, function(){
       res.json({
         status: "success",
       });
-      
     }
   });
  })
 
-
- 
 return job 
 });
-/*const dateParsed = new Date(`${req.body.vals.date}T${req.body.vals.time}Z`)
 
-console.log(dateParsed)
-
-schedule.scheduleJob(dateParsed, function(){
-  transporter.sendMail(mailOptions, function (err, data) {
-      if (err) {
-        res.json({
-          status: "fail",
-        });
-      } else {
-        console.log("email sent");
-        res.json({
-          status: "success",
-        });
-      }
-    });
-  });
-});*/
-
-// put the date and time into a variable and then pass down 
-
-/*
-const schedule = require('node-schedule');
-const date = new Date(2012, 11, 21, 5, 30, 0);
-
-const job = schedule.scheduleJob(date, function(){
-  console.log('The world is going to end today.');
-});
-*/
 const port = 3001;
 app.listen(port, () => {
  console.log(`Server is running on port: ${port}`);
